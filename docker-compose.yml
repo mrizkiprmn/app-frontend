@@ -2,7 +2,7 @@ version: "3.7"
 services:
     frontend:
       container_name: frontend
-      image: mrizkiprmn/frontend:latest
+      image: mrizkiprmn/frontend-jenkins
       ports: 
           - "8181:8080"
       networks: 
