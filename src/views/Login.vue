@@ -62,7 +62,7 @@ export default {
    
     methods: {
       login() {
-            Axios.post("http://54.160.107.173/api/auth")
+            Axios.post("http://54.160.107.173:8283/api/auth")
             .then((res) => {
         if(res.data.result[0].msg === 'Email belum terdaftar') {
           return alert('Email belum terdaftar');
