@@ -14,8 +14,8 @@ services:
           - VUE_APP_CATEGORY=http://54.160.107.173/api/category
           - VUE_APP_HISTORY=http://54.160.107.173/api/history
           - VUE_APP_SEARCH=http://54.160.107.173/api/product/search
-          - VUE_APP_URL=http://54.160.107.173/
-          - VUE_APP_SORT=http://54.160.107.173/api/product/sort
+          - VUE_APP_URL=http://54.160.107.173:8283/
+          - VUE_APP_SORT=http://54.160.107.173:8283/api/product/sort
 
 
 networks: 
