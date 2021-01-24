@@ -7,7 +7,7 @@ services:
           - "8181:8080"
       networks: 
           - netnet
-      environment:  
+      environment:
           - VUE_APP_USERS=http://100.25.222.191/api/users
           - VUE_APP_AUTH=http://100.25.222.191/api/auth
           - VUE_APP_PRODUCT=http://100.25.222.191/api/product
