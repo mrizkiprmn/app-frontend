@@ -9,7 +9,6 @@ services:
           - netnet
       mem_limit: 300m
       mem_reservation: 100m
-      cpus: '1.0'
       environment:  
           - VUE_APP_USERS=http://100.25.222.191/api/users
           - VUE_APP_AUTH=http://100.25.222.191/api/auth
