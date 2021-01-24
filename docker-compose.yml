@@ -8,14 +8,14 @@ services:
       networks: 
           - netnet
       environment:
-          - VUE_APP_USERS=http://100.25.222.191/api/users
-          - VUE_APP_AUTH=http://100.25.222.191/api/auth
-          - VUE_APP_PRODUCT=http://100.25.222.191/api/product
-          - VUE_APP_CATEGORY=http://100.25.222.191/api/category
-          - VUE_APP_HISTORY=http://100.25.222.191/api/history
-          - VUE_APP_SEARCH=http://100.25.222.191/api/product/search
-          - VUE_APP_URL=http://100.25.222.191/
-          - VUE_APP_SORT=http://100.25.222.191/api/product/sort
+          - VUE_APP_USERS=http://54.160.107.173/api/users
+          - VUE_APP_AUTH=http://54.160.107.173/api/auth
+          - VUE_APP_PRODUCT=http://54.160.107.173/api/product
+          - VUE_APP_CATEGORY=http://54.160.107.173/api/category
+          - VUE_APP_HISTORY=http://54.160.107.173/api/history
+          - VUE_APP_SEARCH=http://54.160.107.173/api/product/search
+          - VUE_APP_URL=http://54.160.107.173/
+          - VUE_APP_SORT=http://54.160.107.173/api/product/sort
 
 
 networks: 
