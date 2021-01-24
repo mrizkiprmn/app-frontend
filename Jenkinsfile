@@ -69,11 +69,11 @@ pipeline {
                     sshPublisher(
                         publishers: [
                             sshPublisherDesc(
-                                configName: 'devuser',
+                                configName: 'devserver',
                                 verbose: false,
                                 transfers: [
                                     sshTransfer(
-                                        sourceFiles: 'docker-compose.yml'
+                                        sourceFiles: 'docker-compose.yml',
                                         remoteDirectory: 'app',
                                         execCommand: 'cd app && cd app && docker-compose stop && docker-compose up -d',
                                         execTimeout: 120000,
@@ -97,11 +97,11 @@ pipeline {
                     sshPublisher(
                         publishers: [
                             sshPublisherDesc(
-                                configName: 'produser',
+                                configName: 'prodserver',
                                 verbose: false,
                                 transfers: [
                                     sshTransfer(
-                                        sourceFiles: 'docker-compose.yml'
+                                        sourceFiles: 'docker-compose.yml',
                                         remoteDirectory: 'app',
                                         execCommand: 'cd app && cd app && docker-compose stop && docker-compose up -d',
                                         execTimeout: 120000,
