@@ -61,8 +61,8 @@ export default {
     },
    
     methods: {
-      login() {
-            Axios.post("http://34.224.212.118/api/auth")
+      login(value) {
+            Axios.post(process.env.VUE_APP_AUTH, value)
             .then((res) => {
         if(res.data.result[0].msg === 'Email belum terdaftar') {
           return alert('Email belum terdaftar');
