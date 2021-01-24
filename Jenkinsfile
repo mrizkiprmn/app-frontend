@@ -8,7 +8,7 @@ pipeline {
 
     parameters {
         booleanParam(name: 'RUNTEST', defaultValue: true, description: 'Checklist for RUNTEST')
-        choice(name: 'DEPLOY', choices: ['Master', 'Develop', 'Production'], description: 'Select for DEPLOY')
+        choice(name: 'DEPLOY', choices: ['Develop', 'Production'], description: 'Select for DEPLOY')
     }
 
     stages {
