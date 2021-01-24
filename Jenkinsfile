@@ -69,13 +69,13 @@ pipeline {
                     sshPublisher(
                         publishers: [
                             sshPublisherDesc(
-                                configName: 'dev-user',
+                                configName: 'devuser',
                                 verbose: false,
                                 transfers: [
                                     sshTransfer(
                                         sourceFiles: 'docker-compose.yml'
-                                        remoteDirectory: 'frontend'
-                                        execCommand: 'cd frontend && cd frontend && docker-compose stop && docker-compose up -d',
+                                        remoteDirectory: 'app',
+                                        execCommand: 'cd app && cd app && docker-compose stop && docker-compose up -d',
                                         execTimeout: 120000,
                                     )
                                 ]
@@ -97,13 +97,13 @@ pipeline {
                     sshPublisher(
                         publishers: [
                             sshPublisherDesc(
-                                configName: 'prod-user',
+                                configName: 'produser',
                                 verbose: false,
                                 transfers: [
                                     sshTransfer(
                                         sourceFiles: 'docker-compose.yml'
-                                        remoteDirectory: 'frontend'
-                                        execCommand: 'cd frontend && cd frontend && docker-compose stop && docker-compose up -d',
+                                        remoteDirectory: 'app',
+                                        execCommand: 'cd app && cd app && docker-compose stop && docker-compose up -d',
                                         execTimeout: 120000,
                                     )
                                 ]
