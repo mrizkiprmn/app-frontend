@@ -7,8 +7,8 @@ pipeline {
     agent any
 
     parameters {
-        booleanParam(name: 'RUNTEST', defaultValue: true, description: 'Click this for testing')
-        choice(name: 'DEPLOY', choices: ['Master', 'Develop', 'Production'], description: 'Pick something')
+        booleanParam(name: 'RUNTEST', defaultValue: true, description: 'Checklist for RUNTEST')
+        choice(name: 'DEPLOY', choices: ['Master', 'Develop', 'Production'], description: 'Select for DEPLOY')
     }
 
     stages {
