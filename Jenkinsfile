@@ -69,7 +69,7 @@ pipeline {
                     sshPublisher(
                         publishers: [
                             sshPublisherDesc(
-                                configName: 'dev-user',
+                                configName: 'devuser',
                                 verbose: false,
                                 transfers: [
                                     sshTransfer(
@@ -97,7 +97,7 @@ pipeline {
                     sshPublisher(
                         publishers: [
                             sshPublisherDesc(
-                                configName: 'prod-user',
+                                configName: 'produser',
                                 verbose: false,
                                 transfers: [
                                     sshTransfer(
