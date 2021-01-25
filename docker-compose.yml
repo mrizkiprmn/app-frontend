@@ -7,15 +7,8 @@ services:
           - "8181:8080"
       networks: 
           - netnet
-      environment:
-          - VUE_APP_USERS=http://100.25.222.191/api/users
-          - VUE_APP_AUTH=http://100.25.222.191/api/auth
-          - VUE_APP_PRODUCT=http://100.25.222.191/api/product
-          - VUE_APP_CATEGORY=http://100.25.222.191/api/category
-          - VUE_APP_HISTORY=http://100.25.222.191/api/history
-          - VUE_APP_SEARCH=http://100.25.222.191/api/product/search
-          - VUE_APP_URL=http://100.25.222.191/
-          - VUE_APP_SORT=http://100.25.222.191/api/product/sort
+       env_file: 
+          - ./frontend/.env.local
 
 
 networks: 
