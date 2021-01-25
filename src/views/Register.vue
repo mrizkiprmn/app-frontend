@@ -1,5 +1,4 @@
 <template>
-<form @submit.prevent="submit">
     <div class="Register-container">
         <div class="Register-login-form">
             <div class="Register-img-container">
@@ -57,7 +56,6 @@
         </div>
     </div>
 </div>
-</form>
 </template>
 
 <script>
