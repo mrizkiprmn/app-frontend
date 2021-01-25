@@ -24,7 +24,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    builder = docker.build("--no-cache ${dockerhub}:${BRANCH_NAME}")
+                    builder = docker.build("--no-cache -t ${dockerhub}:${BRANCH_NAME}")
                 }
             }
         }
