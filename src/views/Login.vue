@@ -26,7 +26,7 @@
           <span data-placeholder="Password"></span>
       </div>
 
-      <input 
+      <button 
         class="login-btn" 
         value="Login" 
         @click="login(loginInfo)"/>
@@ -60,8 +60,8 @@ export default {
     },
    
     methods: {
-      login(value) {
-            Axios.post(process.env.VUE_APP_AUTH, value)
+      login() {
+            Axios.post(process.env.VUE_APP_AUTH)
             .then((res) => {
         if(res.data.result[0].msg === 'Email belum terdaftar') {
           return alert('Email belum terdaftar');
