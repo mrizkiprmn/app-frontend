@@ -27,7 +27,6 @@
       </div>
 
       <input 
-        type="submit" 
         class="login-btn" 
         value="Login" 
         @click="login(loginInfo)"/>
