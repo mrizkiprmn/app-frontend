@@ -24,7 +24,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    builder = docker.build("--no-cache", "-t ${dockerhub}:${BRANCH_NAME}")
+                    builder = docker.build("${dockerhub}:${BRANCH_NAME}")
                 }
             }
         }
@@ -103,7 +103,7 @@ pipeline {
                                     sshTransfer(
                                         sourceFiles: 'docker-compose.yml',
                                         remoteDirectory: 'app',
-                                        execCommand: 'cd app && cd app && docker-compose stop && docker-compose up -d',
+                                        execCommand: "docker pull ${dockerhub}:${BRANCH_NAME}; cd ./app/app; docker-compose stop; docker-compose up -d --force-recreate",
                                         execTimeout: 120000,
                                     )
                                 ]
