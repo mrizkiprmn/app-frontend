@@ -1,5 +1,5 @@
 <template>
-<div class="main-form">
+<form @submit.prevent="submit">
   <div class="container" >
     <div class="login-form">
       <h1>Login Form</h1>
@@ -19,6 +19,7 @@
           <input 
           label="Password"
           :type="showPassword ? 'text' : 'password'"
+          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
           @blur="onBlur" 
           @focus="onFocus"
           v-model="loginInfo.password"
@@ -26,7 +27,8 @@
           <span data-placeholder="Password"></span>
       </div>
 
-      <button 
+      <input 
+        type="submit" 
         class="login-btn" 
         value="Login" 
         @click="login(loginInfo)"/>
@@ -38,7 +40,7 @@
       </div>
     </div>
   </div>
-</div>
+</form>
 </template>
 
 <script>
@@ -60,8 +62,8 @@ export default {
     },
    
     methods: {
-      login() {
-            Axios.post("http://100.25.222.191/api/auth")
+      login(value) {
+            Axios.post(process.env.VUE_APP_AUTH, value)
             .then((res) => {
         if(res.data.result[0].msg === 'Email belum terdaftar') {
           return alert('Email belum terdaftar');
