@@ -1,5 +1,5 @@
 <template>
-<form @submit.prevent="submit">
+<div class="main-form">
   <div class="container" >
     <div class="login-form">
       <h1>Login Form</h1>
@@ -38,7 +38,7 @@
       </div>
     </div>
   </div>
-</form>
+</div>
 </template>
 
 <script>
