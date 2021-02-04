@@ -1,7 +1,7 @@
 <template>
    <div class="row">
     <div class="col-sm-12 col-xl-9">
-      <header class="row sticky-top bg-white py-4 shadow">
+      <header class="row sticky-top bg-white py-2 shadow">
         <div class="col-3 col-md-1">
           <Navbar />
         </div>
