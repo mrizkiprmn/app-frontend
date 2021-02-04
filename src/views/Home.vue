@@ -6,7 +6,7 @@
           <Navbar />
         </div>
         <div class="col-9 col-md-7 justify-content-between">
-          <h2 class="text-center">Toko Serba Ada</h2>
+          <h2 class="text-center">Food Items</h2>
           <h1></h1>
         </div>
         <div class="col-12 col-md-4 d-flex justify-content-end">
@@ -60,10 +60,10 @@
     </div>
     <aside class="col-xl-3 bg-white border-left">
       <div
-        class="row sticky-top bg-white py-4 d-flex justify-content-center border-bottom"
+        class="row sticky-top bg-white py-3 d-flex justify-content-center border-bottom"
       >
         <h2 class="text-center">
-          Keranjang
+          Cart
           <span class="p-cart-0 bg-light text-info rounded-circle">
             {{ chart.length }}
           </span>
@@ -157,9 +157,9 @@
       <div class="row" v-else>
         <div class="col container text-center">
           <img src="../assets/icon/food-and-restaurant.png" alt="" />
-          <h4>Keranjang belanja kamu kosong</h4>
+          <h4>Your cart is empty</h4>
           <p class="text-muted" style="font-size: 0.9rem;">
-            Pilih produk yang ingin dibeli di toko ini
+            Please add some items from the menu
           </p>
         </div>
       </div>
@@ -186,15 +186,14 @@ export default {
       datas: null,
       chart: [],
       checkout:{
-        name:null,
         cashier:null,
-        total:null,
+        orders:null,
+        amount:null,
       },
       cashier: "Rizki",
       sorted:{
         name:'',
         price:'',
-        names:'',
       },
       srcName:{
         name:'',
@@ -279,20 +278,23 @@ export default {
         console.log(err);
       });
     },
-    addCheckout(valueNama, valueTotal, valueOrder){
-      for(let i = 0; i < valueNama.length; i++) {
-        if(valueNama.length == 1){
-          this.checkout.name += `${valueNama[i].name}`
+    addCheckout(valueCashier, valueOrders, valueTotal){
+      this.checkout.orders = '{'
+      for(let i = 0; i < valueOrders.length; i++) {
+        if(valueOrders.length == 1){
+          this.checkout.orders += `${valueOrders[i].orders}`
         }else{
           if(i == 0){
-            this.checkout.name += `${valueNama[i].name}`
+            this.checkout.orders += `${valueOrders[i].orders}`
           }else{
-            this.checkout.name += `,${valueNama[i].name}`
+            this.checkout.orders += `,${valueOrders[i].orders}`
           }
         }
       }
+      
+      this.checkout.cashier = valueCashier;
+      this.checkout.orders += '}';
       this.checkout.amount = valueTotal;
-      this.checkout.orders = valueOrder;
       console.log(this.checkout)
       
       axios.post(process.env.VUE_APP_HISTORY, this.checkout, {

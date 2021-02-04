@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex justify-content-center pb-3">
+  <div class="d-flex justify-content-center pb-5">
     <div class="shadow" style="width: 18rem;" @click="addItems(prods)">
       <img :src="images" :alt="name" class="card-img-top" />
       <div class="card-body border-top">
