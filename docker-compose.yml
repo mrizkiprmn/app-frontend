@@ -1,6 +1,7 @@
 version: "3.7"
 services:
     frontend:
+      container_name: frontend
       image: mrizkiprmn/frontend-jenkins:master
       ports: 
           - "8181:80"
