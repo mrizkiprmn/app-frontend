@@ -4,7 +4,7 @@ services:
       container_name: frontend
       image: mrizkiprmn/frontend-jenkins:master
       ports: 
-          - "80:80"
+          - "8181:80"
       networks: 
           - netnet
       environment:
