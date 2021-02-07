@@ -205,5 +205,86 @@ export default {
     font-size: 13px;
     color: #9e9e9e;
 }
+
+@media  (max-width: 540px) {
+  .container {
+    min-height: 100vh;
+    background-image: url("../assets/coffeshoplogo.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+  .login-form {
+    width: 80%;
+    background: rgba(236, 240, 241, 0.9);
+    height: 480px;
+    padding: 80px 40px;
+    border-radius: 10px;
+    left: 50%;
+    top: 50%;
+    box-shadow: 0px 0px 20px -9px #000000;
+    transform: translate(-50%, -50%);
+}
+
+.login-form h1 {
+    text-align: center;
+    margin-bottom: 60px;
+    font-size: 15pt;
+    color: #0439d9;
+}
+}
+
+@media  (max-width: 768px) {
+  .container {
+    min-height: 100vh;
+    background-image: url("../assets/coffeshoplogo.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+  .login-form {
+    width: 80%;
+    background: rgba(236, 240, 241, 0.9);
+    height: 480px;
+    padding: 80px 40px;
+    border-radius: 10px;
+    left: 50%;
+    top: 50%;
+    box-shadow: 0px 0px 20px -9px #000000;
+    transform: translate(-50%, -50%);
+}
+
+.login-form h1 {
+    text-align: center;
+    margin-bottom: 60px;
+    font-size: 15pt;
+    color: #0439d9;
+}
+}
+
+@media  (max-width: 1200px) {
+  .container {
+    min-height: 100vh;
+    background-image: url("../assets/coffeshoplogo.png");
+    background-repeat: no-repeat;
+    background-size: 80%;
+}
+  .login-form {
+    width: 80%;
+    background: rgba(236, 240, 241, 0.9);
+    height: 480px;
+    padding: 80px 40px;
+    border-radius: 10px;
+    left: 50%;
+    top: 50%;
+    box-shadow: 0px 0px 20px -9px #000000;
+    transform: translate(-50%, -50%);
+}
+
+.login-form h1 {
+    text-align: center;
+    margin-bottom: 60px;
+    font-size: 15pt;
+    color: #0439d9;
+}
+}
 </style>
 
