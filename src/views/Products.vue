@@ -5,7 +5,7 @@
       class="col sticky-top bg-white d-flex justify-content-between py-4 shadow"
     >
       <Navbar />
-      <h2 class="text-center">Edit Produk Toko</h2>
+      <h2 class="text-center">Edit Product</h2>
       <h2></h2>
     </header>
     <main class="col-12 mt-4">

@@ -40,11 +40,7 @@
               <tr v-for="history in histories" :key="history.id">
                 <th scope="row">{{history.id}}</th>
                 <td>{{history.cashier}}</td>
-                <td>
-                  <div class="" v-for="order in history.orders" :key="order" >
-                    {{order}}
-                  </div>
-                </td>
+                <td>{{history.orders}}</td>
                 <td>Rp.{{history.amount}}</td>
               </tr>
             </tbody>

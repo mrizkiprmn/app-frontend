@@ -278,22 +278,22 @@ export default {
         console.log(err);
       });
     },
-    addCheckout(valueCashier, valueOrders, valueTotal){
-      this.checkout.orders = '{'
+    addCheckout(valueOrders, valueTotal, valueCashier){
+      this.checkout.orders = `{`
       for(let i = 0; i < valueOrders.length; i++) {
         if(valueOrders.length == 1){
-          this.checkout.orders += `${valueOrders[i].orders}`
+          this.checkout.orders += `${valueOrders[i].name}`
         }else{
           if(i == 0){
-            this.checkout.orders += `${valueOrders[i].orders}`
+            this.checkout.orders += `${valueOrders[i].name}`
           }else{
-            this.checkout.orders += `,${valueOrders[i].orders}`
+            this.checkout.orders += `,${valueOrders[i].name}`
           }
         }
       }
       
       this.checkout.cashier = valueCashier;
-      this.checkout.orders += '}';
+      this.checkout.orders += `}`;
       this.checkout.amount = valueTotal;
       console.log(this.checkout)
       
@@ -304,7 +304,7 @@ export default {
       })
       .then(() => {
         this.chart = [];
-        alert('Success Checkout!')
+        alert('Thanks for Order, Enjoy!')
       })
       .catch((err) => {
         console.log(err);
