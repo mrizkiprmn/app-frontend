@@ -1,4 +1,5 @@
 <template>
+<form @submit.prevent="submit">
     <div class="Register-container">
         <div class="Register-login-form">
             <div class="Register-img-container">
@@ -9,14 +10,14 @@
             </div>
         <div class="Register-input-container">
             <div class="Register-text-explain">
-                <h2>Form Register</h2>
+                <h2>Register Form</h2>
             </div>
             <div class="Register-input">
                 <div class="Register-inp">
                     <input
                         type="text"
                         name="username"
-                        @blur="onBlur"
+                         @blur="onBlur"
                         @focus="onFocus"
                         v-model="register.username"
                         />
@@ -29,7 +30,6 @@
                         @blur="onBlur"
                         @focus="onFocus"
                         v-model="register.email"
-                        :class="{'is-invalid': $v.email.$error}"
                     />
                     <span data-placeholder="Email"/>
                 </div>
@@ -39,8 +39,7 @@
                         name="password"
                         @blur="onBlur"
                         @focus="onFocus"
-                        v-model="register.password" 
-                        :class="{'is-invalid': $v.password.$error}"
+                        v-model="register.password"
                     />
                     <span data-placeholder="Password"/>
                     
@@ -56,6 +55,7 @@
         </div>
     </div>
 </div>
+</form>
 </template>
 
 <script>
@@ -71,7 +71,7 @@ export default {
             username: null,
             email: null,
             password: null,
-            role: "users",
+            role: "user",
             },
             cacheKey:'token',
             roleKey:'role',
@@ -85,12 +85,6 @@ export default {
             maxLength: maxLength(50),
             minLength: minLength(2)
        },
-       password : {
-           required,
-           minLength: minLength(3)
-
-
-       }
     },
     methods: {
         submit () {
@@ -118,11 +112,15 @@ export default {
       }
       
        axios
-      .post(process.env.VUE_APP_USERS, value)
+      .post(process.env.VUE_APP_URL + "users", value)
       .then((res) => {
-        if(res.data.result[0].msg === 'Username/email has been registered'){
-          alert('Username/email has been registered!');
-        }else{
+        if(res.data.result[0].msg === "username has been registered"){
+          alert('Username has been registered');
+        } 
+        else if(res.data.result[0].msg === "email has been registered") {
+            alert('Email has been registered')
+        }
+        else{
           alert('Register Success');
           this.register.username = null;
           this.register.email = null;
@@ -366,9 +364,27 @@ h3 {
 }
 
 @media  (max-width: 540px) {
+    
+.Register-login-form {
+    width: 68%;
+    height: 555px;
+    background: rgba(236, 240, 241, 0.678);
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px -9px #000000;
+    display: flex;
+
+    .Register-img-container {
+        position: relative;
+        width: 190px;
+        height: 100%;
+        z-index: -1;
+
+    }
+}
+
 .Register-container {
     font-family: "Roboto", sans-serif;
-    width: 100%;
+    width: 80%;
 }
 
 .Register-input {
@@ -391,37 +407,30 @@ h3 {
         height: 40px;
     }
 }
+
 .Register-input-container {
-    width: 150%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    padding-top: 20px;
 
     .Register-input-name {
-
+        margin-top: 10px;
 
         input {
-            width: 50px;
             color: #333;
             background: none;
             outline: none;
             border: 1px solid #979797;
+            width: 250px;
             padding-left: 5px;
+            height: 35px;
             border-radius: 3px;
             font-size: 15px;
         }
     }
 }
-.Register-login-form {
-    width: 80%;
-    background: rgba(236, 240, 241, 0.678);
-    border-radius: 10px;
-    box-shadow: 0px 0px 20px -9px #000000;
-
-    .Register-img-container {
-        width: 80px;
-        z-index: -1;
-
-    }
-}
-
 .Register-text-explain {
     margin-bottom: 30px;
     font-family: "Roboto", sans-serif;
@@ -430,7 +439,7 @@ h3 {
         font-size: 20px;
         margin-bottom: 0px;
         color: #0424d9;
-        text-align:center;
+        text-align:left;
     }
 }
 
@@ -564,7 +573,13 @@ h3 {
     width: 100%;
 }
 
+    .Register-img-container {
+        position: relative;
+        width: 190px;
+        height: 100%;
+        z-index: -1;
 
+    }
 .Register-inp {
     border-bottom: 2px solid #1d1c1c;
     width: 80%;
@@ -647,4 +662,5 @@ h3 {
 }
 
 }
+
 </style>
