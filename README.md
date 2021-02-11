@@ -22,7 +22,7 @@ Hello from Jenkins
 
 ## Home
 ------------
-![home](https://user-images.githubusercontent.com/64014794/104283604-58db2b80-54e3-11eb-9b0a-baf50248e70b.png)
+![homegit](https://user-images.githubusercontent.com/64014794/107632487-2450c000-6c99-11eb-8c13-c59a4eb8294c.png)
 
 
 ## Project setup
