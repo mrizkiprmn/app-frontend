@@ -12,7 +12,7 @@
       <router-link to="/home" class="dropdown-item my-4">
         <img src="../assets/icon/fork.png" alt="" />
       </router-link>
-      <router-link to="/history" class="dropdown-item my-4">
+      <router-link v-if="role === 'admin'" to="/history" class="dropdown-item my-4">
         <img src="../assets/icon/clipboard.png" alt="" />
       </router-link>
       <div

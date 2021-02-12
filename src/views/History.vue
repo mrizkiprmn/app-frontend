@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row" v-if="role === 'admin'">
     <header
       class="col-12 sticky-top bg-white d-flex justify-content-between py-1 shadow">
       <Navbar />
@@ -7,7 +7,7 @@
       <h2></h2>
     </header>
     <main class="col-12 mt-3">
-      <div v-if="role == 'admin'" class="row mt-3">
+      <div class="row mt-3">
         <div class="col-12 col-md-4">
           <img src="../assets/history/Card.svg" alt="" class="card-img-top" />
         </div>
@@ -18,7 +18,7 @@
           <img src="../assets/history/Card 3.svg" alt="" class="card-img-top" />
         </div>
       </div>
-      <div v-if="role == 'admin'" class="row mt-3">
+      <div class="row mt-3">
         <div class="col-12">
           <img src="../assets/history/Chart.svg" alt="" class="card-img-top" />
         </div>
