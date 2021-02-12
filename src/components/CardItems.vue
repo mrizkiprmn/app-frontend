@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex justify-content-center pb-5">
-    <div class="p-0" style="width: 19rem;">
+    <div class="p-0" style="width: 19rem; " @click="addCart(product)">
       <img :src="images" :alt="name" class="btn card-img-top border-radius-0" />
       <div class="card-body">
         <h5 style="font-family: sans-serif; font-size: 1rem;">{{ name }}</h5>
