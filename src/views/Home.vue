@@ -57,12 +57,10 @@
       </main>
     </div>
     <aside class="col-xl-3 bg-white border-left">
-      <div
-        class="row sticky-top bg-white py-2 d-flex justify-content-center border-bottom"
-      >
+      <div class="row sticky-top bg-white py-2 d-flex justify-content-center border-bottom">
         <h2 class="text-center">
           <img src="../assets/icon/shopping-cart-solid.svg" style="width: 3.3rem;" alt="">
-          <span style="font-size: 1.7rem;" class="text-center text-white rounded-circle bg-info pr-2 m-1">
+          <span style="font-size: 1.7rem;" class="bg-info text-center text-white rounded-circle pr-2 m-1">
             {{ quantity}}
           </span>
         </h2>
@@ -73,7 +71,7 @@
           :key="item.id"
           class="col-12 col-xl-6 col-md-6 col-lg-4 col-xl-12"
         >
-          <Cart style="font-family: sans-serif;" class="d-flex border-0"
+          <Cart class="d-flex border-0"
           :id="index" 
           :image="item.product.image" 
           :name="item.product.name" 
@@ -84,11 +82,10 @@
 
         <div class="col-12 pt-4">
           <div class="d-flex justify-content-between">
-            <h3>Total:</h3>
-            <h3>{{toRupiah (calculate) }}*</h3>
+            <h3 style="font-size: 1.4rem;">Total:</h3>
+            <h3 style="font-size: 1.2rem;">{{toRupiah (calculate) }}*</h3>
           </div>
-          <!-- Button trigger modal -->
-          <h7>*belum termasuk PB1</h7>
+          <h7 style="font-size: 0.9rem;">*belum termasuk PB1</h7>
           <button
             type="button"
             class="col btn btn-info mt-2"
@@ -123,25 +120,25 @@
                   </button>
                 </div>
                 <div class="modal-body bg-light">
-                  <p class="font-weight-bold text-right">Receipt no:{{randomInvoice(invoices)}}</p>
-                  <p class="fst-normal text-left">Cashier: {{ cashier }}</p>
+                  <p style="font-size: 0.9rem" class="font-weight-bold text-right">Receipt no:{{randomInvoice(invoices)}}</p>
+                  <p style="font-size: 0.9rem" class="text-left">Cashier: {{ cashier }}</p>
                   <div
                     class="d-flex justify-content-between"
                     v-for="item of allCart"
                     :key="item.product.id"
                   >
                  
-                    <p class="font-weight-bold">{{ item.product.name}} x {{item.qty}}</p>
-                    <p class="font-weight-bold">{{toRupiah (item.product.price) }}</p>
+                    <p style="font-size: 0.9rem" class="font-weight-bold">{{ item.product.name}} x {{item.qty}}</p>
+                    <p style="font-size: 0.9rem" class="font-weight-bold">{{toRupiah (item.product.price) }}</p>
                   </div>
                   <div class="d-flex justify-content-between">
-                    <p class="font-weight-bold">PB1 10% </p>
-                    <p class="font-weight-bold">{{toRupiah(ppn)}}</p>
+                    <p style="font-size: 0.9rem" class="font-weight-bold">PB1 10% </p>
+                    <p style="font-size: 0.9rem" class="font-weight-bold">{{toRupiah(ppn)}}</p>
                   </div>
-                  <p class="font-weight-bold text-right">
-                    Total : {{toRupiah (calculate + ppn) }} 
+                  <p style="font-size: 0.9rem" class="font-weight-bold text-right">
+                    Total:  {{toRupiah (calculate + ppn) }} 
                   </p>
-                  <p class="font-weight-bold text-left pt-2">Payment:Cash</p>
+                  <p style="font-size: 0.9rem" class="font-weight-bold text-left pt-2">Payment:Cash</p>
                   
                 </div>
 
@@ -376,9 +373,6 @@ export default {
 </script>
 
 <style scoped>
-.p-cart-0 {
-  padding: 0 0.7rem 0.2rem 0.7rem;
-}
 
 .dropdown-menu {
   border: 0;

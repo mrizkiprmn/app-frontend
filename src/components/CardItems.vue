@@ -1,10 +1,11 @@
 <template>
-  <div class="d-flex justify-content-center pb-4">
-    <div class="p-0" style="width: 19rem; " @click="addCart(product)">
+  <div class="d-flex justify-content-center pb-5">
+    <div class="p-0" style="width: 19rem;">
+      <div :class="hoverShow ? 'hover show' : 'hide'"></div>
       <img :src="images" :alt="name" class="btn card-img-top border-radius-0" />
       <div class="card-body">
-        <h5 style="font-family: sans-serif;">{{ name }}</h5>
-        <h3 style="font-family: sans-serif; font-size: 1.3rem;" class="font-weight-bold">{{toRupiah (price) }}</h3>
+        <h5 style="font-family: sans-serif; font-size: 1rem;">{{ name }}</h5>
+        <h3 style="font-family: sans-serif; font-size: 0.9rem;" class="font-weight-bold">{{toRupiah (price) }}</h3>
       </div>
     </div>
   </div>
@@ -14,6 +15,9 @@
 import {mapActions} from 'vuex'
 export default {
   name: "Card",
+    return: {
+      hoverShow: false,
+    },
   props: {
     images: {
       type: String,
@@ -45,3 +49,19 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .hover {
+    background: blue;
+    color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 50%;
+    position: absolute;
+    border-radius: 7px;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+</style>
