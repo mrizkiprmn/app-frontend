@@ -10,19 +10,9 @@ Hello from Jenkins
 
 ---------------------------
 
-## Register
-------
-![register](https://user-images.githubusercontent.com/64014794/104283454-22051580-54e3-11eb-85ba-2100c35af129.png)
-
-## Login
--------------
-![login](https://user-images.githubusercontent.com/64014794/104283237-d488a880-54e2-11eb-839a-b720adec77cb.png)
-
--------------
-
 ## Home
 ------------
-![homegit](https://user-images.githubusercontent.com/64014794/107632487-2450c000-6c99-11eb-8c13-c59a4eb8294c.png)
+![homeapp](https://user-images.githubusercontent.com/64014794/107747684-6dad1800-6d4a-11eb-8f30-0fafbf39bbeb.png)
 
 
 ## Project setup
