@@ -13,7 +13,7 @@ const mainRouter = new VueRouter({
     mode:'history',
     routes: [
      {
-        path: "/login",
+        path: "/",
         name : "Login",
         component: Login
   },
@@ -40,11 +40,6 @@ const mainRouter = new VueRouter({
       path: "/register",
       name: "Register",
       component: Register,
-  },
-
-    {
-      path : "/",
-      redirect: "/login",
   },
 
     {

@@ -319,7 +319,7 @@
 </div>
 </template>
 
-<style coped>
+<style scoped>
 
 
 body

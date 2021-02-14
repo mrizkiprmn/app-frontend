@@ -1,47 +1,26 @@
 <template>
-<form @submit.prevent="submit">
-  <div class="container" >
-    <div class="login-form">
-      <h1>Login Form</h1>
-
-      <div class="inpform">
-          <input 
-          type="text" 
-          @blur="onBlur"
-           @focus="onFocus" 
-           v-model="loginInfo.email"
-           label="Email"
-           />
-          <span data-placeholder="Email"></span>
-      </div>
-
-      <div class="inpform">
-          <input 
-          label="Password"
-          :type="showPassword ? 'text' : 'password'"
-          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-          @blur="onBlur" 
-          @focus="onFocus"
-          v-model="loginInfo.password"
-         />
-          <span data-placeholder="Password"></span>
-      </div>
-
-      <input 
-        type="submit" 
-        class="login-btn" 
-        value="Login" 
-        @click="login(loginInfo)"/>
-
-        
-
-      <div class="bottom-txt">
-            <p>Don't have account? <router-link to="/register">Sign up!</router-link></p>
+   <div class="login">
+    <div class="main-login">
+      <div class="login-page">
+        <div class="image">
+          <div class="welcome-title">
+            <h1 class="font-weight-bold pl-4 ml-2 mt-5 mr-3">Welcome to <span class="text-primary">Coffee IT</span><br>
+            </h1>
+          </div>
+        </div>
+        <div class="form">
+          <form class="form-login" @submit.prevent="submit">
+            <input @blur="onBlur" @focus="onFocus"  type="text" placeholder="Username" class="form-control" required v-model="loginInfo.username"/>
+            <input @blur="onBlur" @focus="onFocus"  :type="showPassword ? 'text' : 'password'" label="password" placeholder="Password" class="form-control" required v-model="loginInfo.password"/>
+            <input type="submit" value="Log In" class="login-button" @click="login(loginInfo)" />
+          </form>
+          <p class="ml-4 register-text">Don't have an account ? <router-link to="/register">Sign Up</router-link></p>
+        </div>
+        </div>
       </div>
     </div>
-  </div>
 
-</form>
+
 
  
 </template>
@@ -55,7 +34,7 @@ export default {
         return {
           showPassword: false,
           loginInfo: {
-            email: null,
+            username: null,
             password: null,
           },
           cacheKey:'token',
@@ -68,8 +47,8 @@ export default {
       login(value) {
             Axios.post(process.env.VUE_APP_URL + "auth", value)
             .then((res) => {
-        if(res.data.result[0].msg === "Email not registered") {
-          alert('Email not registered');
+        if(res.data.result[0].msg === "Username not registered") {
+          alert('Username not registered');
         }
         if(res.data.result[0].msg === "Check Password"){
           alert('Check Password');
@@ -87,8 +66,8 @@ export default {
       });
       
     },
-   
-     onFocus(event) {
+
+        onFocus(event) {
             event.target.classList.add("focus")
         },
         onBlur(event) {
@@ -96,6 +75,7 @@ export default {
                 event.target.classList.remove("focus")
             }
         },
+   
         },
         
 }
@@ -105,190 +85,110 @@ export default {
 * {
     padding: 0;
     margin: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    /* font-family: 'Poppins', sans-serif; */
-    font-family: "Montserrat", sans-serif;
 }
 
-.container {
-    min-height: 100vh;
-    background-image: url("../assets/coffeshoplogo.png");
-    background-repeat: no-repeat;
-    background-size: 600px;
-    background-position: 15% 50%;
+.welcome-title {
+  background-color: rgba(5, 5, 5, 0.397);
+  height: 100%;
+  border-radius: 17px 0 0 17px;
+  display: flex;
+  justify-content: flex-end;
+  color: #fff;
 }
 
-.login-form {
-    width: 360px;
-    background: rgba(236, 240, 241, 0.9);
-    height: 480px;
-    padding: 80px 40px;
-    border-radius: 10px;
-    position: absolute;
-    left: 70%;
-    top: 50%;
-    box-shadow: 0px 0px 20px -9px #000000;
-    transform: translate(-50%, -50%);
+.main-login {
+  background-color: rgb(34, 34, 34);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.login-page {
+  width: 98%;
+  border-radius: 17px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  background-color: #fff;
 }
 
-.login-form h1 {
-    text-align: center;
-    margin-bottom: 60px;
-    font-size: 15pt;
-    color: #0439d9;
+.image {
+  background-image: url("../assets/icon/resto(2).png");
+  background-size: cover;
+  height: 90vh;
+  border-radius: 17px 0 0 17px;
 }
 
-.inpform {
-    border-bottom: 2px solid #dadada;
-    position: relative;
-    margin: 30px 0;
+.form-login {
+  border-radius: 0 17px 17px 0;
+  padding: 20px;
 }
-
-.inpform input {
-    font-size: 15px;
-    width: 100%;
-    color: #333;
-    border: none;
-    background: none;
-    outline: none;
-    padding: 0 5px;
-    height: 40px;
+.form-login input {
+  margin-top: 28px;
 }
-
-.inpform span::before {
-    content: attr(data-placeholder);
-    position: absolute;
-    top: 50%;
-    left: 5px;
-    color: #adadad;
-    transform: translateY(-50%);
-    z-index: -1;
+.form-login input[type = 'text'],
+.form-login input[label = 'password'] {
+  border: none;
+  background: none;
+  border-bottom: 1px solid rgb(160, 159, 159);
+  border-radius: 0;
+}
+.login-button {
+  width: 100%;
+  height: 40px;
+  border: none;
+  outline: none;
+  background-color: rgba(34, 34, 34, 0.884);
+  padding: 7px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  background-size: 200%;
+  transition: 0.5;
+}
+.login-button:hover {
+  background-image: linear-gradient(120deg, #07038c, #a829b9);
+  color: #fff;
+  position: right;
     transition: 0.5s;
 }
-
-.inpform span::after {
-    content: "";
-    position: absolute;
-    bottom: -5%;
-    left: 0px;
-    width: 0%;
-    height: 2px;
-    background-image: linear-gradient(120deg, #07038c, #2980b9);
-    transition: 0.5s;
+.register-text a {
+  color: blue;
 }
 
-.focus + span::before {
-    top: -10px;
-    font-size: 9pt;
-}
 
-.focus + span::after {
+
+@media screen and (max-width: 1050px) {
+  .main-login {
+    height: 140vh;
+  }
+  .image {
+    border-radius: 17px 17px 0 0;
+  }
+  .login-page {
+    grid-template-columns: 1fr;
+  }
+  .form-login {
+    border-radius: 0 0 17px 17px;
+  }
+}
+@media screen and (max-width: 576px) {
+  .main-login {
+    height: 100%;
+  }
+  .image {
+    border-radius: 0;
+  }
+  .login-page {
     width: 100%;
-}
-
-.login-btn {
-    display: block;
-    margin: 50px 0;
-    width: 100%;
-    height: 40px;
-    border: none;
-    background-size: 200%;
-    cursor: pointer;
-    background-image: linear-gradient(120deg, #07038c, #2980b9);
-    color: #fff;
-    transition: 0.5s;
-}
-
-.login-btn:hover {
-    background-position: right;
-}
-
-.botom-txt {
-    text-align: center;
-    font-size: 13px;
-    color: #9e9e9e;
-}
-
-@media  (max-width: 540px) {
-  .container {
-    min-height: 100vh;
-    background-image: url("../assets/coffeshoplogo.png");
-    background-repeat: no-repeat;
-    background-size: 100%;
-}
-  .login-form {
-    width: 80%;
-    background: rgba(236, 240, 241, 0.9);
-    height: 480px;
-    padding: 80px 40px;
-    border-radius: 10px;
-    left: 50%;
-    top: 50%;
-    box-shadow: 0px 0px 20px -9px #000000;
-    transform: translate(-50%, -50%);
-}
-
-.login-form h1 {
-    text-align: center;
-    margin-bottom: 60px;
-    font-size: 15pt;
-    color: #0439d9;
-}
-}
-
-@media  (max-width: 768px) {
-  .container {
-    min-height: 100vh;
-    background-image: url("../assets/coffeshoplogo.png");
-    background-repeat: no-repeat;
-    background-size: 100%;
-}
-  .login-form {
-    width: 80%;
-    background: rgba(236, 240, 241, 0.9);
-    height: 480px;
-    padding: 80px 40px;
-    border-radius: 10px;
-    left: 50%;
-    top: 50%;
-    box-shadow: 0px 0px 20px -9px #000000;
-    transform: translate(-50%, -50%);
-}
-
-.login-form h1 {
-    text-align: center;
-    margin-bottom: 60px;
-    font-size: 15pt;
-    color: #0439d9;
-}
-}
-
-@media  (max-width: 1200px) {
-  .container {
-    min-height: 100vh;
-    background-image: url("../assets/coffeshoplogo.png");
-    background-repeat: no-repeat;
-    background-size: 80%;
-}
-  .login-form {
-    width: 80%;
-    background: rgba(236, 240, 241, 0.9);
-    height: 480px;
-    padding: 80px 40px;
-    border-radius: 10px;
-    left: 50%;
-    top: 50%;
-    box-shadow: 0px 0px 20px -9px #000000;
-    transform: translate(-50%, -50%);
-}
-
-.login-form h1 {
-    text-align: center;
-    margin-bottom: 60px;
-    font-size: 15pt;
-    color: #0439d9;
-}
+    box-shadow: none;
+  }
+  .form-login {
+    border-radius: 0;
+  }
+  .login-page {
+    border-radius: 0;
+  }
 }
 </style>
 

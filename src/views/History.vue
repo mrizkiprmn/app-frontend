@@ -1,5 +1,5 @@
 <template>
-  <div class="row" v-if="role === 'admin'">
+  <div class="row" v-if="role == 'admin'">
     <header
       class="col-12 sticky-top bg-white d-flex justify-content-between py-1 shadow">
       <Navbar />
@@ -90,13 +90,15 @@ export default {
         }
       })
       .then((res) => {
-        if(res.data.result[0].msg === 'Login dulu!'){
-          alert('Login Dulu!');
+       if(res.data.result[0].msg === 'Login first'){
+          alert('Login First!');
           router.push({ path: '/' });
-        }else
-        if(res.data.result[0].msg === 'Not Found'){
-          alert('404 | Not Found');
-          router.push('404');
+        }else if(res.data.result[0].msg === 'Check Token!'){
+          alert('Token Expired!');
+          router.push({ path: '/' });
+        }else if(res.data.result[0].msg === 'you not premitted'){
+          alert('Cannot Access');
+          router.push('Home');
         }else{
           this.histories = res.data.result;
         }

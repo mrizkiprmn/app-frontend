@@ -6,7 +6,7 @@
           <Navbar />
         </div>
         <div class="col-9 col-md-7 justify-content-between">
-          <h2 style="font-size: 33px;" class="text-center py-1">Food Items</h2>
+          <h2 style="font-size: 33px;" class="text-center py-1">Coffee IT</h2>
         </div>
         <div class="col-12 col-md-4 d-flex justify-content-end">
           <form action="#" class="form-inline my-2 my-lg-0">
@@ -18,29 +18,49 @@
               @keyup.delete="searchName()"
             />
           </form> 
-          <button class="btn" @click="searchName()">
+          <!-- <button class="btn" @click="searchName()">
             <img src="../assets/search.png" alt="" />
-          </button>
+          </button> -->
           <button class="btn" @click="filterOn()">
             <img src="../assets/icon/filter.png" alt="" />
           </button>
         </div>
         <div v-if="filter" class="col-12 text-center border-top">
           <div class="row m-2 py-1">
-            <div class="col-12 col-md-4 d-flex justify-content-center mt-3">
-              <h5>Sort</h5>
-              <select class="form-select ml-2" aria-label="Default select example" v-model="sorted.name" @click="sortedProduct()">
+
+            <div class="col-6 col-md-3 d-flex justify-content-center mt-3">
+            <h5>Name</h5>
+              <select class="btn form-select ml-3" aria-label="Default select example" v-model="sorted.name" @click="sortedProduct()">
                 <option selected></option>
-                <option value="ASC">ASC</option>
-                <option value="DESC">DESC</option>
+                <option value="ASC">A - Z</option>
+                <option value="DESC">Z - A</option>
               </select>
-            </div>  
-    
-            <div class="col-12 col-md-4 d-flex justify-content-center mt-3">
-              <h5>OrderBy</h5>
-              <select class="form-select ml-2" aria-label="Default select example" v-model="sorted.price" @click="sortedProduct()">
+            </div> 
+
+          <div class="col-6 col-md-3 d-flex justify-content-center mt-3">
+              <h5>Price</h5>
+              <select class="btn form-select ml-3" aria-label="Default select example" v-model="sorted.price" @click="sortedProduct()">
                 <option selected></option>
-                <option value="price">PRICE</option>
+                <option value="ASC">Low</option>
+                <option value="DESC">High</option>
+              </select>
+            </div>
+
+          <div class="col-6 col-md-3 d-flex justify-content-center mt-3">
+              <h5>Category</h5>
+              <select class="btn form-select ml-3" aria-label="Default select example" v-model="sorted.category" @click="sortedProduct()">
+                <option selected></option>
+                <option value="ASC">Drinks</option>
+                <option value="DESC">Food</option>
+              </select>
+            </div>
+
+            <div class="col-6 col-md-3 d-flex justify-content-center mt-3">
+              <h5>Products</h5>
+              <select class="btn form-select ml-3" aria-label="Default select example" v-model="sorted.new" @click="sortedProduct()">
+                <option selected></option>
+                <option value="DESC">New</option>
+                <option value="ASC">Old</option>
               </select>
             </div>
           </div>
@@ -198,10 +218,12 @@ export default {
         users:null,
         invoices:null,
       },
-      cashier: "Rizki",
+      cashier: "Rizki Permana",
       sorted:{
         name:'',
-        price:'',
+        category: '',
+        new: '',
+        price: Number,
       },
       srcName:{
         name:'',
@@ -211,6 +233,8 @@ export default {
       userKey: 'username',
       userName: '',
       invoices: '',
+      roleKey: 'role',
+      role: '',
 
       
     };
@@ -228,23 +252,24 @@ export default {
       );
     },
     ...mapActions(['cartNull']),
-    loadProducts(){
-      axios.get(process.env.VUE_APP_URL + "product", {
+      sortedProduct(){
+      axios
+      .get(process.env.VUE_APP_URL + "sorted" + `/?name=${this.sorted.name}&category=${this.sorted.category}&new=${this.sorted.new}&price=${this.sorted.price}`,{
         headers: {
           authtoken: localStorage.getItem(this.cacheKey)
         }
       })
       .then((res) => {
-        if(res.data.result.email === 'TokenExpiredError'){
-          alert('Token Expired! Silahkan Login Lagi');
+        if(res.data.result[0].msg === 'Login first'){
+          alert('Login First!');
           router.push({ path: '/' });
         }else
-        if(res.data.result[0].msg === 'Login dulu!'){
-          alert('Login Dulu!');
+        if(res.data.result[0].msg === 'Check Token!'){
+          alert('Token Expired!');
           router.push({ path: '/' });
         }else
-        if(res.data.result[0].msg === 'Not Found'){
-          alert('404 | Not Found');
+        if(res.data.result[0].msg === 'you not premitted'){
+          alert('Cannot Access');
           router.push('404');
         }else{
           this.datas = null
@@ -255,37 +280,9 @@ export default {
         console.log(err);
       });
     },
-    sortedProduct(){
-      axios
-      .get(process.env.VUE_APP_URL + "product" + "/sort" + `?orderBy=${this.sorted.price}&sort=${this.sorted.name}`,{
-        headers: {
-          authtoken: localStorage.getItem(this.cacheKey)
-        }
-      })
-      .then((res) => {
-        if(res.data.result.name === 'TokenExpiredError'){
-          alert('Token Expired! Silahkan Login Lagi');
-          router.push({ path: '/' });
-        }else
-        if(res.data.result[0].msg === 'Login dulu!'){
-          alert('Login Dulu!');
-          router.push({ path: '/' });
-        }else
-        if(res.data.result[0].msg === 'Not Found'){
-          alert('404 | Not Found');
-          router.push('404');
-        }else{
-          this.datas = null;
-          this.datas = res.data.result;
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    },
     searchName(){
       axios
-      .get(process.env.VUE_APP_URL + "product" + `/search?search=${this.srcName.name}`, {
+      .get(process.env.VUE_APP_URL + "sorted" +  `/${this.srcName.name}`, {
         headers: {
           authtoken: localStorage.getItem(this.cacheKey)
         }
@@ -318,10 +315,7 @@ export default {
       this.checkout.users = valueUser;
       this.Invoices = valueInvoices
       this.checkout.invoices += '';
-      // this.checkout.invoices = valueInvoices;
-      
-    
-      console.log(this.checkout)
+  
       
       axios.post(process.env.VUE_APP_URL + "history", this.checkout, {
         headers: {
@@ -337,23 +331,12 @@ export default {
         alert('Sorry ')
       });
     },
-    addChart(value) {
-      if (this.chart.length == 0) {
-        this.chart.push(value);
-      } else {
-        if (this.chart.includes(value)) {
-          // this.chart.push(prod);
-        } else {
-          this.chart.push(value);
-        }
-      }
-    },
-    cancel() {
-      this.chart = [];
-    },
+
     filterOn() {
       this.filter = !this.filter;
       this.sorted.name= '';
+      this.sorted.category= ''
+      this.sorted.new= ''
       this.sorted.price = '';
       this.sortedProduct();
     },
@@ -362,11 +345,10 @@ export default {
     ...mapGetters(['allCart', 'calculate', 'quantity', 'ppn'])
   },
   mounted() {
-    this.loadProducts()
     this.sortedProduct()
     this.searchName()
+    this.role = localStorage.getItem(this.roleKey)
     this.userName = localStorage.getItem(this.userKey)
-    // this.Invoices = localStorage.getItem(this.randomInvoices)
 
   },
 };

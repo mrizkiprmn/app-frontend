@@ -1,21 +1,19 @@
 <template>
 
-  <div v-if="role == 'admin'" class="row">
+  <div class="row">
     <header
       class="col sticky-top bg-white d-flex justify-content-between py-1 shadow"
     >
       <Navbar />
-      <h2 class="text-center">Edit Product</h2>
+      <h2 class="text-center">Table Menu</h2>
       <h2></h2>
     </header>
     <main class="col-12 mt-4">
       <div class="row">
         <div class="col-12 col-lg-8">
-          <div class="card-body bg-dark">
+          <div class="card-body bg-light">
             <!-- Button trigger modal Add Product -->
-            <button type="button" class="btn btn-info shadow mb-3" data-toggle="modal" data-target="#modalAddProduct">
-              Add Product
-            </button>
+            <img v-if="role == 'admin'" style="width: 4rem;" src="../assets/icon/addproduct.png" type="button" class="btn mb-3" data-toggle="modal" data-target="#modalAddProduct"/>
 
             <!-- Modal Add Product -->
             <div class="modal fade" id="modalAddProduct" tabindex="-1" role="dialog" aria-labelledby="modalAddProductTitle" aria-hidden="true">
@@ -68,7 +66,7 @@
               </div>
             </div>
             <div class="table-responsive">
-              <table class="table text-center text-white">
+              <table class="table text-center text-black">
                 <thead>
                   <tr>
                     <th scope="col">ID</th>
@@ -86,15 +84,16 @@
                     <td>{{product.id_category}}</td>
                     <td>
                       <!-- Button trigger modal Edit Product -->
-                      <button
+                      <img
+                        v-if="role == 'admin'"
+                        style="width: 4rem;"
+                        src="../assets/icon/edit.png"
                         type="button"
-                        class="btn btn-warning"
+                        class="btn"
                         data-toggle="modal"
                         data-target="#modalEditProduct"
                         @click="editProduct(product)"
-                      >
-                        Edit
-                      </button>
+                      />
 
                       <!-- Modal Edit Product -->
                       <div
@@ -108,9 +107,7 @@
                         <div class="modal-dialog modal-dialog-centered" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h3 class="modal-title" id="modalEditProductTitle">
-                                Edit Product
-                              </h3>
+                              <h3 class="modal-title" id="modalEditProductTitle"></h3>
                               <button
                                 type="button"
                                 class="close"
@@ -163,9 +160,12 @@
                           </div>
                         </div>
                       </div>
-                      <button type="button" class="btn btn-danger ml-2" @click="delProduct(product)">
-                        Del
-                      </button>
+                      <img
+                      v-if="role == 'admin'"
+                      style="width: 4.5rem;"
+                      src="../assets/icon/delete.webp"
+                      type="button" 
+                      class="btn" @click="delProduct(product)"/>
                     </td>
                   </tr>
                 </tbody>
@@ -175,16 +175,17 @@
           </div>
         </div>
         <div class="col-12 col-lg-4">
-          <div class="card-body bg-dark">
+          <div class="card-body bg-light">
             <!-- Button trigger modal Add Category -->
-            <button
+            <img
+             v-if="role == 'admin'"
+              src="../assets/icon/addproduct.png"
+              style="width: 4rem"
               type="button"
-              class="btn btn-info shadow mb-3"
+              class="btn mb-3"
               data-toggle="modal"
               data-target="#modalAddCategory"
-            >
-              Add Category
-            </button>
+            />
 
             <!-- Modal Add Category -->
             <div
@@ -227,12 +228,13 @@
               </div>
             </div>
 
-            <table class="table text-center text-white">
+            <table class="table text-center text-black">
               <thead>
                 <tr>
                   <th scope="col">ID</th>
                   <th scope="col">Category</th>
-                  <th scope="col">Actions</th>
+                  <th scope="col">Actions
+                </th>
                 </tr>
               </thead>
               <tbody>
@@ -241,15 +243,16 @@
                   <td>{{category.name}}</td>
                   <td class="d-flex justify-content-center">
                     <!-- Button trigger modal Edit Category -->
-                    <button
+                    <img
+                      v-if="role == 'admin'"
+                      src="../assets/icon/edit.png"
+                      style="width: 3.8rem;"
                       type="button"
-                      class="btn btn-warning"
+                      class="btn"
                       data-toggle="modal"
                       data-target="#modalEditCategory"
                       @click="editCategory(category)"
-                    >
-                      Edit
-                    </button>
+                    />
 
                     <!-- Modal Edit Category -->
                     <div
@@ -292,9 +295,12 @@
                         </div>
                       </div>
                     </div>
-                    <button type="button" class="btn btn-danger ml-2" @click="delCategory(category)">
-                      Del
-                    </button>
+                    <img 
+                    v-if="role == 'admin'"
+                    src="../assets/icon/delete.webp"
+                    style="width: 2.8rem"
+                    type="button"  
+                    @click="delCategory(category)"/>
                   </td>
                 </tr>
               </tbody>
@@ -352,17 +358,15 @@ export default {
         }
       })
       .then((res) => {
-        if(res.data.result.name === 'TokenExpiredError'){
-          alert('Token Expired! Silahkan Login Lagi');
-          router.push({ path: '/' });
-        }else
-        if(res.data.result[0].msg === 'Login dulu!'){
-          alert('Login Dulu!');
-          router.push({ path: '/' });
-        }else
-        if(res.data.result[0].msg === 'Not Found'){
-          alert('404 | Not Found');
-          router.push('404');
+        if(res.data.result[0].msg === 'Login first'){
+          alert('Login First!');
+          router.push('/');
+        }else if(res.data.result[0].msg === 'Check Token!'){
+          alert('Token Expired!')
+          router.push('/')
+        }else if(res.data.result[0].msg === 'you not premitted'){
+          alert('Cannot Acces!')
+          router.push('404')
         }else{
           this.products = res.data.result;
         }
@@ -439,7 +443,7 @@ export default {
       }
       formData.append('id_category', data.id_category);
       
-      axios.put(process.env.VUE_APP_URL + "product", formData, {
+      axios.put(process.env.VUE_APP_URL + "/product", formData, {
         headers: {
           authtoken: localStorage.getItem(this.cacheKey),
           "Content-Type": "multipart/form-data"
