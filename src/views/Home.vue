@@ -79,13 +79,14 @@
     <aside class="col-xl-3 bg-white border-left">
       <div class="row sticky-top bg-white py-2 d-flex justify-content-center border-bottom">
         <h2 class="text-center">
-          <img src="../assets/icon/shopping-cart-solid.svg" style="width: 3.3rem;" alt="">
+         <fa-icon :icon="['fas', 'shopping-cart']" size="lg"/>
           <span style="font-size: 1.7rem;" class="bg-info text-center text-white rounded-circle pr-2 m-1">
             {{ quantity}}
           </span>
         </h2>
       </div>
       <div class="row pt-3" v-if="allCart.length > 0">
+  
         <div
           v-for="(item, index) in allCart"
           :key="item.id"
@@ -251,6 +252,7 @@ export default {
           .replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1.")
       );
     },
+
     ...mapActions(['cartNull']),
       sortedProduct(){
       axios

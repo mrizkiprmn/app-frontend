@@ -97,7 +97,7 @@ export default {
           alert('Token Expired!');
           router.push({ path: '/' });
         }else if(res.data.result[0].msg === 'you not premitted'){
-          alert('Cannot Access');
+          alert('Only admin can do this');
           router.push('Home');
         }else{
           this.histories = res.data.result;
