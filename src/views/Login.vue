@@ -9,11 +9,12 @@
           </div>
         </div>
         <div class="form">
-          <form class="form-login" @submit.prevent="submit">
-            <input @blur="onBlur" @focus="onFocus"  type="text" placeholder="Username" class="form-control" required v-model="loginInfo.username"/>
-            <input @blur="onBlur" @focus="onFocus"  :type="showPassword ? 'text' : 'password'" label="password" placeholder="Password" class="form-control" required v-model="loginInfo.password"/>
+          <b-form class="form-login" @submit.prevent="submit">
+            <fa-icon :icon="['fas', 'user']" size="2x"/>
+            <b-form-input @blur="onBlur" @focus="onFocus"  type="text" placeholder="Username" class="form-control" required v-model="loginInfo.username" :icon="['fas', 'envelope']"/>
+            <b-form-input @blur="onBlur" @focus="onFocus"  :type="showPassword ? 'text' : 'password'" label="password" placeholder="Password" class="form-control" required v-model="loginInfo.password"/>
             <input type="submit" value="Log In" class="login-button" @click="login(loginInfo)" />
-          </form>
+          </b-form>
           <p class="ml-4 register-text">Don't have an account ? <router-link to="/register">Sign Up</router-link></p>
         </div>
         </div>
