@@ -17,6 +17,7 @@ pipeline {
             steps {
                 nodejs("yarn14") {
                     sh 'yarn install'
+                    sh 'yarn build'
                 }
             }
         }
