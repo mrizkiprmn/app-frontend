@@ -1,6 +1,6 @@
 <template>
 <form class="register-page" @submit.prevent="submit">
-  <div class="container" >
+  <div class="container">
     <div class="register-form">
     <h1>Register Form</h1>
 
@@ -9,7 +9,7 @@
           type="text" 
           @blur="onBlur"
            @focus="onFocus" 
-           v-model="register.username"
+          required v-model="register.username"
            label="username"
            />
           <span data-placeholder="Username"></span>
@@ -20,18 +20,17 @@
           type="email" 
           @blur="onBlur"
            @focus="onFocus" 
-           v-model="register.email"
+           required v-model="register.email"
            />
           <span data-placeholder="Email"></span>
       </div>
 
       <div class="inpform">
           <input 
-          label="Password"
-          :type="showPassword ? 'text' : 'password'"
+          type="Password"
           @blur="onBlur" 
           @focus="onFocus"
-          v-model="register.password"
+          required v-model="register.password"
          />
           <span data-placeholder="Password"></span>
       </div>
@@ -43,20 +42,16 @@
         @click="formRegister(register)"/>
 
       <div class="bottom-txt">
-            <p>Have an account? <router-link to="/">Log in</router-link></p>
+            <p>Have an account? <router-link class="font-weight-bold" to="/">Log in</router-link></p>
       </div>
     </div>  
   </div>
-
 </form>
-
- 
 </template>
 
 
 <script>
 import axios from "axios"
-import { required, minLength, maxLength, email, } from 'vuelidate/lib/validators'
 export default {
     name: "Register",
     data() {
@@ -71,27 +66,20 @@ export default {
             roleKey:'role',
             userKey:'username'
         }
-    },
-    validations : {
-       email : {
-           required,
-            email,
-            maxLength: maxLength(50),
-            minLength: minLength(2)
-       },
-    },
+      },
+
     methods: {
-        submit () {
-            this.$v.$touch();
-			if(this.$v.$error) return 
-        },
         valid(email) {
              const emailRegex = /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/;
              return emailRegex.test(email);
     },
-    formRegister(value) {
+
+     formRegister(value) {
         if(!this.valid(value.email)){
         return alert('Email not valid!')
+      }
+      if(value.username.length < 3){
+        return alert("Username must be at least 3 letters")
       }
         if(value.username === '' || value.username === null){
         return alert('fill the name')
@@ -102,6 +90,9 @@ export default {
         if(value.password === '' || value.password === null){
         return alert('fill the password')
       }
+       if(value.password.length < 6) {
+         return alert('Password must be at least 6 letters')
+       }
       
        axios
       .post(process.env.VUE_APP_URL + "users", value)
@@ -120,6 +111,7 @@ export default {
         }
       })
       .catch((err) => {
+        this.reset
         alert('Sorry, Register failed');
         console.log(err);
       });
@@ -132,7 +124,6 @@ export default {
                 event.target.classList.remove("focus")
             }
         },
-    
         
     },
 }
@@ -145,6 +136,7 @@ export default {
     box-sizing: border-box;
     text-decoration: none;
 }
+
 
 .register-page {
     width: 100%;
@@ -249,6 +241,7 @@ export default {
 
 @media  (max-width: 540px) {
   .container {
+    width: 100%;
     height: 100vh;
     background-image: url("../assets/icon/resto(2).png");
     background-size: cover;
@@ -256,7 +249,6 @@ export default {
   .register-form {
     width: 80%;
     background: rgba(236, 240, 241, 0.9);
-    height: 480px;
     padding: 80px 40px;
     border-radius: 10px;
     left: 50%;
@@ -281,7 +273,6 @@ export default {
     background-size: cover;;
 }
   .register-form {
-    width: 80%;
     background: rgba(236, 240, 241, 0.9);
     height: 480px;
     padding: 80px 40px;
@@ -308,7 +299,6 @@ export default {
     background-size: cover;
 }
   .register-form {
-    width: 80%;
     background: rgba(236, 240, 241, 0.9);
     height: 480px;
     padding: 80px 40px;

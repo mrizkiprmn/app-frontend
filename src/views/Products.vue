@@ -1,5 +1,4 @@
 <template>
-
   <div class="row">
     <header
       class="col sticky-top bg-white d-flex justify-content-between py-1 shadow"
@@ -18,7 +17,7 @@
             <!-- Modal Add Product -->
             <div class="modal fade" id="modalAddProduct" tabindex="-1" role="dialog" aria-labelledby="modalAddProductTitle" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
+                <div  class="modal-content">
                   <div class="modal-header">
                     <h3 class="modal-title" id="modalAddProductTitle">
                       Add Product
@@ -178,7 +177,7 @@
           <div class="card-body bg-light">
             <!-- Button trigger modal Add Category -->
             <img
-             v-if="role == 'admin'"
+              v-if="role == 'admin'"
               src="../assets/icon/addproduct.png"
               style="width: 4rem"
               type="button"
@@ -387,7 +386,7 @@ export default {
       }
       if(data.id_category === '' || data.id_category === null){
         return alert('Isi kategorinya!')
-      }
+      } 
 
       let formData = new FormData;
       formData.append('name', data.name);

@@ -10,11 +10,29 @@
         </div>
         <div class="form">
           <b-form class="form-login" @submit.prevent="submit">  
-            <b-form-input @blur="onBlur" @focus="onFocus"  type="text" placeholder="Username" class="form-control" required v-model="loginInfo.username" :icon="['fas', 'envelope']"/>
-            <b-form-input @blur="onBlur" @focus="onFocus"  :type="showPassword ? 'text' : 'password'" label="password" placeholder="Password" class="form-control" required v-model="loginInfo.password"/>
+
+            <b-form-input 
+            type="text" 
+            id="username"
+            placeholder="Username" 
+            class="form-control" 
+            required v-model="loginInfo.username"
+            autofocus>
+            </b-form-input>
+     
+          
+            <b-form-input 
+            type="password" 
+            placeholder="Password" 
+            class="form-control" 
+            required v-model="loginInfo.password">
+            </b-form-input>
+      
+
             <input type="submit" value="Log In" class="login-button" @click="login(loginInfo)" />
           </b-form>
-          <p class="ml-4 register-text">Don't have an account ? <router-link to="/register">Sign Up</router-link></p>
+          <p class="ml-4 mb-4 register-text text-center">Don't have an account? <router-link style="font-size: 15px;" class="text-primary   font-weight-bold" to="/register">Sign Up</router-link></p>
+          
         </div>
         </div>
       </div>
@@ -66,17 +84,8 @@ export default {
       });
       
     },
-
-        onFocus(event) {
-            event.target.classList.add("focus")
-        },
-        onBlur(event) {
-            if (event.target.value === "") {
-                event.target.classList.remove("focus")
-            }
-        },
-   
-        },
+    
+  },
         
 }
 </script>
@@ -123,21 +132,15 @@ export default {
   padding: 20px;
 }
 .form-login input {
-  margin-top: 28px;
+  margin-top: 20px;
 }
-.form-login input[type = 'text'],
-.form-login input[label = 'password'] {
-  border: none;
-  background: none;
-  border-bottom: 1px solid rgb(160, 159, 159);
-  border-radius: 0;
-}
+
 .login-button {
   width: 100%;
   height: 40px;
   border: none;
   outline: none;
-  background-color: rgba(34, 34, 34, 0.884);
+  background-image: linear-gradient(120deg, #07038c, #2980b9);
   padding: 7px;
   cursor: pointer;
   color: white;
@@ -147,14 +150,14 @@ export default {
   transition: 0.5;
 }
 .login-button:hover {
-  background-image: linear-gradient(120deg, #07038c, #a829b9);
-  color: #fff;
   position: right;
     transition: 0.5s;
 }
 .register-text a {
   color: blue;
 }
+
+
 
 
 

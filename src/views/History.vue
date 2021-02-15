@@ -9,18 +9,18 @@
     <main class="col-12 mt-3">
       <div class="row mt-3">
         <div class="col-12 col-md-4">
-          <img src="../assets/history/Card.svg" alt="" class="card-img-top" />
+          <img style="width: 25rem;" src="../assets/history/Card.svg" alt="" class="card-img-top" />
         </div>
         <div class="col-12 col-md-4">
-          <img src="../assets/history/Card 2.svg" alt="" class="card-img-top" />
+          <img style="width: 25rem;" src="../assets/history/Card 2.svg" alt="" class="card-img-top" />
         </div>
         <div class="col-12 col-md-4">
-          <img src="../assets/history/Card 3.svg" alt="" class="card-img-top" />
+          <img style="width: 25rem;" src="../assets/history/Card 3.svg" alt="" class="card-img-top" />
         </div>
       </div>
       <div class="row mt-3">
         <div class="col-12">
-          <img src="../assets/history/Chart.svg" alt="" class="card-img-top" />
+          <img style="width: 70rem;" src="../assets/history/Chart.svg" alt="" class="card-img-top" />
         </div>
       </div>
       <div class="recent-order card table-responsive">
