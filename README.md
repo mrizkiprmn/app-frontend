@@ -7,10 +7,6 @@
 
 ---------------------------
 
-## Home
-------------
-![homeapp](https://user-images.githubusercontent.com/64014794/107747684-6dad1800-6d4a-11eb-8f30-0fafbf39bbeb.png)
-
 
 ## Project setup
 ```
