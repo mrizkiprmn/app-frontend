@@ -12,16 +12,12 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faShoppingCart,
-  faEnvelope,
-  faUser
 } 
 from "@fortawesome/free-solid-svg-icons";
 
 
 library.add(
   faShoppingCart,
-  faEnvelope,
-  faUser
 )
 
 Vue.use(BootstrapVue)

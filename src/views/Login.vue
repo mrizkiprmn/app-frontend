@@ -9,8 +9,7 @@
           </div>
         </div>
         <div class="form">
-          <b-form class="form-login" @submit.prevent="submit">
-            <fa-icon :icon="['fas', 'user']" size="2x"/>
+          <b-form class="form-login" @submit.prevent="submit">  
             <b-form-input @blur="onBlur" @focus="onFocus"  type="text" placeholder="Username" class="form-control" required v-model="loginInfo.username" :icon="['fas', 'envelope']"/>
             <b-form-input @blur="onBlur" @focus="onFocus"  :type="showPassword ? 'text' : 'password'" label="password" placeholder="Password" class="form-control" required v-model="loginInfo.password"/>
             <input type="submit" value="Log In" class="login-button" @click="login(loginInfo)" />
