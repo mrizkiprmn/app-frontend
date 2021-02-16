@@ -7,7 +7,7 @@ import Vuelidate from 'vuelidate'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import VModal from "vue-js-modal";
-import { BVToastPlugin ,BootstrapVue, IconsPlugin} from "bootstrap-vue";
+import { BootstrapVue, IconsPlugin} from "bootstrap-vue";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -24,7 +24,6 @@ library.add(
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
-Vue.use(BVToastPlugin)
 Vue.use(VModal)
 Vue.use(Vuelidate)
 Vue.component("fa-icon", FontAwesomeIcon);
