@@ -12,7 +12,7 @@
       <router-link to="/home" class="dropdown-item my-4">
         <img src="../assets/icon/fork.png" alt="" />
       </router-link>
-      <router-link to="/history" class="dropdown-item my-4">
+      <router-link to="/history" class="dropdown-item my-1">
         <img src="../assets/icon/clipboard.png" alt="" />
       </router-link>
       <div class= "v dropdown-item my-4">
@@ -52,12 +52,14 @@ export default {
 </script>
 
 <style scoped>
+
 .dropdown-menu {
-  min-width: 4rem;
-  margin: 1.5rem 0 0;
+  border-radius: 10px;
+  min-width: 4.4rem;
 }
 
 .dropdown-item {
   padding: 0;
+  margin-top: 100px;
 }
 </style>

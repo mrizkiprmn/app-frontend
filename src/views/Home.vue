@@ -18,9 +18,7 @@
               @keyup.delete="searchName()"
             />
           </form> 
-          <!-- <button class="btn" @click="searchName()">
-            <img src="../assets/search.png" alt="" />
-          </button> -->
+              <fa-icon style="margin: 14px;" :icon="['fas', 'search']" size="2x"/>
           <button class="btn" @click="filterOn()">
             <img src="../assets/icon/filter.png" alt="" />
           </button>
@@ -362,4 +360,6 @@ export default {
   border: 0;
   padding: 0;
 }
+
+
 </style>
