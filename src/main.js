@@ -12,14 +12,22 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faShoppingCart,
+  faClipboardCheck,
   faSearch,
+  faListAlt,
+  faSignOutAlt,
+  faUtensils,
 } 
 from "@fortawesome/free-solid-svg-icons";
 
 
 library.add(
   faShoppingCart,
+  faClipboardCheck,
   faSearch,
+  faListAlt,
+  faSignOutAlt,
+  faUtensils
 )
 
 Vue.use(BootstrapVue)

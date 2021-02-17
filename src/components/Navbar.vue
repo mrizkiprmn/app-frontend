@@ -8,20 +8,20 @@
     >
       <img style="width: 2.7rem;" src="../assets/icon/menu.png" alt="" />
     </button>
-    <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton">
+    <div class="dropdown-menu text-center shadow" aria-labelledby="dropdownMenuButton">
       <router-link to="/home" class="dropdown-item my-4">
-        <img src="../assets/icon/fork.png" alt="" />
+        <fa-icon :icon="['fas', 'utensils']" size="3x"/>
       </router-link>
       <router-link to="/history" class="dropdown-item my-1">
-        <img src="../assets/icon/clipboard.png" alt="" />
+        <fa-icon :icon="['fas', 'clipboard-check']" size="3x"/>
       </router-link>
-      <div class= "v dropdown-item my-4">
+      <div class= "dropdown-item my-4">
         <router-link to="/products">
-          <img src="../assets/icon/add.png" alt="" />
+          <fa-icon style="color: black;" :icon="['fas', 'list-alt']" size="3x"/>
         </router-link>
       </div>
       <router-link to="/" class="dropdown-item my-4">
-        <img src="../assets/logout.png" alt="" @click="exit()" />
+        <fa-icon :icon="['fas', 'sign-out-alt']" size="3x" @click="exit()"/>
       </router-link>
     </div>
   </nav>
@@ -54,12 +54,13 @@ export default {
 <style scoped>
 
 .dropdown-menu {
-  border-radius: 10px;
+  color:rgba(red, green, blue, alpha);
+  /* color: rgba(19, 63, 145, 0); */
+  border-radius: 5px;
   min-width: 4.4rem;
 }
 
 .dropdown-item {
   padding: 0;
-  margin-top: 100px;
 }
 </style>

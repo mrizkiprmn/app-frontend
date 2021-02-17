@@ -1,12 +1,12 @@
 <template>
    <div class="row">
     <div class="col-sm-12 col-xl-9">
-      <header class="row sticky-top bg-white py-1 shadow">
+      <header class="row sticky-top py-1 bg-white shadow">
         <div class="col-3 col-md-1">
           <Navbar />
         </div>
         <div class="col-9 col-md-7 justify-content-between">
-          <h2 style="font-size: 33px;" class="text-center py-1">Coffee IT</h2>
+          <h2 style="font-size: 31px;" class="text-center py-2">Coffee IT</h2>
         </div>
         <div class="col-12 col-md-4 d-flex justify-content-end">
           <form action="#" class="form-inline my-2 my-lg-0">
@@ -26,7 +26,7 @@
         <div v-if="filter" class="col-12 text-center border-top">
           <div class="row m-2 py-1">
 
-            <div class="col-6 col-md-3 d-flex justify-content-center mt-3">
+            <div class="col-6 col-md-3 d-flex justify-content-center mt-2">
             <h5>Name</h5>
               <select class="btn form-select ml-3" aria-label="Default select example" v-model="sorted.name" @click="sortedProduct()">
                 <option selected></option>
@@ -35,7 +35,7 @@
               </select>
             </div> 
 
-          <div class="col-6 col-md-3 d-flex justify-content-center mt-3">
+          <div class="col-6 col-md-3 d-flex justify-content-center mt-2">
               <h5>Price</h5>
               <select class="btn form-select ml-3" aria-label="Default select example" v-model="sorted.price" @click="sortedProduct()">
                 <option selected></option>
@@ -44,7 +44,7 @@
               </select>
             </div>
 
-          <div class="col-6 col-md-3 d-flex justify-content-center mt-3">
+          <div class="col-6 col-md-3 d-flex justify-content-center mt-2">
               <h5>Category</h5>
               <select class="btn form-select ml-3" aria-label="Default select example" v-model="sorted.category" @click="sortedProduct()">
                 <option selected></option>
@@ -53,7 +53,7 @@
               </select>
             </div>
 
-            <div class="col-6 col-md-3 d-flex justify-content-center mt-3">
+            <div class="col-6 col-md-3 d-flex justify-content-center mt-2">
               <h5>Products</h5>
               <select class="btn form-select ml-3" aria-label="Default select example" v-model="sorted.new" @click="sortedProduct()">
                 <option selected></option>
@@ -180,7 +180,7 @@
       </div>
       <div class="row" v-else>
         <div class="col container text-center">
-          <img class="mb-2" style="height: 9rem; width: 11rem;" src="../assets/icon/food-and-restaurant-2.png" alt="" />
+          <img class="mb-1" style="height: 9rem; width: 11rem;" src="../assets/icon/food-and-restaurant-2.png" alt="" />
           <h4>Your cart is empty</h4>
           <p class="text-muted" style="font-size: 0.9rem;">
             Please add some items from the menu
