@@ -54,8 +54,6 @@ export default {
 <style scoped>
 
 .dropdown-menu {
-  color:rgba(red, green, blue, alpha);
-  /* color: rgba(19, 63, 145, 0); */
   border-radius: 5px;
   min-width: 4.4rem;
 }
