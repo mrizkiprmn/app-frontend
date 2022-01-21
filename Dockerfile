@@ -16,5 +16,5 @@ WORKDIR /app
 
 COPY --from=builder /app .
 
-CMD [ "yarn", "start" ]
+CMD [ "yarn", "serve" ]
 
