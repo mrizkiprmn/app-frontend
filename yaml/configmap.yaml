@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fe-cfg
+  namespace: app-frontend
+data:
+  VUE_APP_URL: 
