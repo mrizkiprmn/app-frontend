@@ -17,7 +17,7 @@ nameOverride: ""
 fullnameOverride: ""
 configmap: fe-cfg
 configValue:
-  VUE_APP_URL: 'http://localhost:8888/api/'
+  VUE_APP_URL: http://localhost:8888/api/
 
 
 serviceAccount:
@@ -29,7 +29,11 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
-podAnnotations: {}
+podAnnotations:
+  configmap.reloader.stakater.com/reload: fe-cfg
+  secret.reloader.stakater.com/reload: regcred
+  
+
 
 podSecurityContext: {}
   # fsGroup: 2000
