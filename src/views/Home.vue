@@ -254,7 +254,7 @@ export default {
     ...mapActions(['cartNull']),
       sortedProduct(){
       axios
-      .get(process.env.VUE_APP_URL + "sorted" + `/?name=${this.sorted.name}&category=${this.sorted.category}&new=${this.sorted.new}&price=${this.sorted.price}`,{
+      .get(`${process.env.VUE_APP_API}` + "sorted" + `/?name=${this.sorted.name}&category=${this.sorted.category}&new=${this.sorted.new}&price=${this.sorted.price}`,{
         headers: {
           authtoken: localStorage.getItem(this.cacheKey)
         }
@@ -282,7 +282,7 @@ export default {
     },
     searchName(){
       axios
-      .get(process.env.VUE_APP_URL + "sorted" +  `/${this.srcName.name}`, {
+      .get(`${process.env.VUE_APP_API}` + "sorted" +  `/${this.srcName.name}`, {
         headers: {
           authtoken: localStorage.getItem(this.cacheKey)
         }
@@ -317,7 +317,7 @@ export default {
       this.checkout.invoices += '';
   
       
-      axios.post(process.env.VUE_APP_URL + "history", this.checkout, {
+      axios.post(`${process.env.VUE_APP_API}`+ "history", this.checkout, {
         headers: {
           authtoken: localStorage.getItem(this.cacheKey)
         }
@@ -328,7 +328,7 @@ export default {
       })
       .catch((err) => {
         console.log(err);
-        alert('Sorry ')
+        alert('Cannot Checkout, Please Check Your Connection ')
       });
     },
 

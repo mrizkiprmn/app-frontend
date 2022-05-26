@@ -84,7 +84,7 @@ export default {
       );
     },
     loadHistory(){
-      axios.get(process.env.VUE_APP_URL + "history", {
+      axios.get(`${process.env.VUE_APP_API}` + "history", {
         headers: {
           authtoken: localStorage.getItem(this.cacheKey)
         }
