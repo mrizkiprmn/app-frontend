@@ -95,7 +95,7 @@ export default {
        }
       
        axios
-      .post(process.env.VUE_APP_URL + "users", value)
+      .post(`${process.env.VUE_APP_API}` + "users", value)
       .then((res) => {
         if(res.data.result[0].msg === "username has been registered"){
           alert('Username has been registered');

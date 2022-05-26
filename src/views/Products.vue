@@ -351,7 +351,7 @@ export default {
   },
   methods:{
     loadProducts(){
-      axios.get(process.env.VUE_APP_URL + "product", {
+      axios.get(`${process.env.VUE_APP_API}` + "product", {
         headers: {
           authtoken: localStorage.getItem(this.cacheKey)
         }
@@ -386,7 +386,7 @@ export default {
       }
       if(data.id_category === '' || data.id_category === null){
         return alert('Isi kategorinya!')
-      } 
+      }
 
       let formData = new FormData;
       formData.append('name', data.name);
@@ -394,7 +394,7 @@ export default {
       formData.append('image', this.$refs.fileInput.files[0]);
       formData.append('id_category', data.id_category);
 
-      axios.post(process.env.VUE_APP_URL + "product", formData, {
+      axios.post(`${process.env.VUE_APP_API}` + "product", formData, {
         headers: {
           authtoken: localStorage.getItem(this.cacheKey),
           "Content-Type": "multipart/form-data"
@@ -442,7 +442,7 @@ export default {
       }
       formData.append('id_category', data.id_category);
       
-      axios.put(process.env.VUE_APP_URL + "/product", formData, {
+      axios.put(`${process.env.VUE_APP_API}` + "/product", formData, {
         headers: {
           authtoken: localStorage.getItem(this.cacheKey),
           "Content-Type": "multipart/form-data"
@@ -458,7 +458,7 @@ export default {
       });
     },
     delProduct(value){
-      axios.delete(process.env.VUE_APP_URL + "product" + `/${value.id}`, {
+      axios.delete(`${process.env.VUE_APP_API}` + "product" + `/${value.id}`, {
         headers: {
           authtoken: localStorage.getItem(this.cacheKey)
         }
@@ -474,7 +474,7 @@ export default {
     },
 
     loadCategories(){
-      axios.get(process.env.VUE_APP_URL + "category", {
+      axios.get(`${process.env.VUE_APP_API}` + "category", {
         headers: {
           authtoken: localStorage.getItem(this.cacheKey)
         }
@@ -488,7 +488,7 @@ export default {
       });
     },
     addCategory(value){
-      axios.post(process.env.VUE_APP_URL + "category", value, {
+      axios.post(`${process.env.VUE_APP_API}` + "category", value, {
         headers: {
           authtoken: localStorage.getItem(this.cacheKey)
         }
@@ -508,7 +508,7 @@ export default {
       this.formCategory.name = value.name;
     },
     updateCategory(value){
-      axios.put(process.env.VUE_APP_URL + "category", value, {
+      axios.put(`${process.env.VUE_APP_API}` + "category", value, {
         headers: {
           authtoken: localStorage.getItem(this.cacheKey)
         }
@@ -523,7 +523,7 @@ export default {
       });
     },
     delCategory(value){
-      axios.delete(process.env.VUE_APP_URL + "category" + `/${value.id}`, {
+      axios.delete(`${process.env.VUE_APP_API}` + "category" + `/${value.id}`, {
         headers: {
           authtoken: localStorage.getItem(this.cacheKey)
         }
