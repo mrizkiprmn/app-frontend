@@ -63,7 +63,7 @@ export default {
    
     methods: {
       login(value) {
-            Axios.post(process.env.VUE_APP_URL + "auth", value)
+            Axios.post(`${process.env.VUE_APP_API}` + "auth", value)
             .then((res) => {
         if(res.data.result[0].msg === "Username not registered") {
           alert('Username not registered');
