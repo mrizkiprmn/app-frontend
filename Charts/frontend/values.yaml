@@ -32,8 +32,8 @@ serviceAccount:
 podAnnotations:
   configmap.reloader.stakater.com/reload: fe-cfg
   secret.reloader.stakater.com/reload: regcred
-  
-
+  prometheus.io/scrape: 'true'
+  prometheus.io/port: '9090'
 
 podSecurityContext: {}
   # fsGroup: 2000
