@@ -9,7 +9,7 @@ image:
   repository: mrizkiprmn/app-frontend
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v.1"
+  tag: "windows"
 
 imagePullSecrets:
   - name: regcred

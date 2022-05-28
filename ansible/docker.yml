@@ -5,8 +5,8 @@
   vars: 
     hub: "mrizkiprmn"
     proj: "app-frontend"
-    tag: "v.1"
-    dir: /home/mrizkiprmn/Documents/github
+    tag: "windows"
+    dir: /home/mrizkiprmn/github
     repo: https://github.com/mrizkiprmn/app-frontend.git
 
     
