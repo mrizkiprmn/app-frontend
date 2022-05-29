@@ -6,10 +6,10 @@ replicaCount: 1
 namespace: app-frontend
 
 image:
-  repository: mrizkiprmn/frontend
+  repository: mrizkiprmn/app-frontend
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "alpha"
+  tag: "v.1"
 
 imagePullSecrets:
   - name: regcred
@@ -17,7 +17,7 @@ nameOverride: ""
 fullnameOverride: ""
 configmap: fe-cfg
 configValue:
-  VUE_APP_URL: http://localhost:8888/api/
+  VUE_APP_API: http://localhost:8888/api/
 
 
 serviceAccount:
@@ -32,8 +32,8 @@ serviceAccount:
 podAnnotations:
   configmap.reloader.stakater.com/reload: fe-cfg
   secret.reloader.stakater.com/reload: regcred
-  
-
+  prometheus.io/scrape: 'true'
+  prometheus.io/port: '9090'
 
 podSecurityContext: {}
   # fsGroup: 2000
