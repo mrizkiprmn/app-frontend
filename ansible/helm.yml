@@ -2,7 +2,7 @@
   connection: local
 
   vars:
-    project: fe
+    project: frontend
     namespace: app-frontend
     src: /home/mrizkiprmn/github/app-frontend/Charts/frontend
 
