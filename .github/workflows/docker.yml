@@ -16,6 +16,7 @@ jobs:
 
   Login to Docker:
     runs-on: ubuntu-latest
+    steps:
 
     - name: Login to Docker Registry
       if: GitHub.event_name != 'pull_request'
@@ -28,12 +29,13 @@ jobs:
 
   Build and Push Images:
     runs-on: ubuntu-latest
-    
+    steps:
+`
     - name: Build and push
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
         registry: ghcr.io
         image: mrizkiprmn/app-frontend
         tags: 0.1.0
-        
+      
         
