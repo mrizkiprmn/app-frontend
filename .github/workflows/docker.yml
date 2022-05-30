@@ -36,7 +36,7 @@ jobs:
       with:
         registry: ghcr.io
         dockerfile: .
-        image: app-frontend
+        image: mrizkiprmn/app-frontend
         tags: 0.1.0
       
         
