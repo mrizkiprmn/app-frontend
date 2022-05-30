@@ -20,8 +20,8 @@ jobs:
   
    - name: docker build
      run: |
-      docker build -t ${{env.REPO_GIT}}/${{env.PROJECT}}:0.1.0 .   
+      echo $REPO_GIT $PROJECT | docker build -t $REPO_GIT/$PROJECT:0.1.0 .   
   
    - name: docker push
      run: |
-      docker push echo ${{env.REPO_GIT}}/${{env.PROJECT}}:0.1.0
+      echo $REPO_GIT $PROJECT | docker build -t $REPO_GIT/$PROJECT:0.1.0
