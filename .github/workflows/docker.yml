@@ -35,8 +35,8 @@ jobs:
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
         registry: ghcr.io
-        dockerfile: .
-        image: mrizkiprmn/app-frontend
+        dockerfile: Dockerfile.ci
+        image: app-frontend
         tags: 0.1.0
       
         
