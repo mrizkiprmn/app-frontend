@@ -2,9 +2,9 @@
   connection: local
 
   vars:
-    project: fe
+    project: frontend
     namespace: app-frontend
-    src: /home/mrizkiprmn/Documents/github/app-frontend/Charts/frontend
+    src: /home/mrizkiprmn/github/app-frontend/Charts/frontend
 
   pre_tasks:
 
@@ -24,6 +24,6 @@
 
     - name: helm deploy
       kubernetes.core.helm:
-        name: fe
+        name: "{{ project }}"
         namespace: "{{ namespace }}"
         chart_ref: "{{ src }}"
