@@ -5,7 +5,6 @@ on: [push, pull_request]
 
 jobs:
   Chekcout Code:
-    needs: build
     runs-on: ubuntu-latest
 
     if: GitHub.ref == 'refs/heads/master' || GitHub.event_name == '0.1.0'
@@ -16,6 +15,8 @@ jobs:
 
 
   Login to Docker:
+    runs-on: ubuntu-latest
+
     - name: Login to Docker Registry
       if: GitHub.event_name != 'pull_request'
       uses: docker/login-action@v2
@@ -26,6 +27,8 @@ jobs:
   
 
   Build and Push Images:
+    runs-on: ubuntu-latest
+    
     - name: Build and push
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
