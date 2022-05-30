@@ -1,0 +1,66 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: regcred
+  namespace: app-frontend
+data:
+  .dockerconfigjson: ewogICAgImF1dGhzIjoKICAgIHsKICAgICAgICAiZ2hjci5pbyI6CiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAgICJhdXRoIjoiYlhKcGVtdHBjSEp0YmpwbmFIQmZRak5xTVVFd2MzZDBSMlp6TTJKV1dsRnhZMWxJT1doUGNEZENNVmxDTkRSVFRXWjIiCiAgICAgICAgICAgIH0KICAgIH0KfQo= 
+type: kubernetes.io/dockerconfigjson
+
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fe-cfg
+  namespace: app-frontend
+data:
+  VUE_APP_API: http://localhost:8888/api/
+
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: app-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      annotations:
+        configmap.reloader.stakater.com/reload: be-cfg
+      labels:
+        app: frontend
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: frontend
+          image: mrizkiprmn/app-frontend:0.1.0
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: fe-cfg
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  namespace: app-frontend
+spec:
+  type: NodePort
+  ports:
+  - name: http
+    nodePort: 31236
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
