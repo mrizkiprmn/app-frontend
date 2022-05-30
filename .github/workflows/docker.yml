@@ -35,7 +35,7 @@ jobs:
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
         registry: ghcr.io
-        dockerfile: Dockerfile
+        dockerfile: .
         image: app-frontend
         tags: 0.1.0
       
