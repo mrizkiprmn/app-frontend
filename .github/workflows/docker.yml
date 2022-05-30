@@ -4,22 +4,42 @@ on: [push, pull_request]
 
 
 jobs:
- build:
-   runs-on: ubuntu-latest
-   steps:
-   - uses: actions/checkout@1.0.0  
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v.2
   
-   - name: docker login
-     env:
-       DOCKER_USER: ${{ secrets.DOCKER_USER }}
-       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-     run: |
-       echo $DOCKER_PASSWORD | docker login ghcr.io -u $DOCKER_USER --password-stdin    
+  publish_docker_image:
+    needs: build
+    runs-on: ubuntu-latest
+
+    if: GitHub.ref == 'refs/heads/master' || GitHub.event_name == '0.1.0'
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v.2
+    - name: Docker Meta
+      id: meta
+      uses: crazy-max/ghaction-docker-meta@v2
+      with:
+        images: mrizkiprmn/app-frontend
+        tags: |
+          type=raw,value=latest,enable=${{ endsWith(GitHub.ref, ‘master’) }}
+          type=ref,event=tag
+        flavor: |
+          latest=false
+
+    - name: Login to DockerHub
+      if: GitHub.event_name != 'pull_request'
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
   
-   - name: docker build
-     run: |
-      docker build -t ghcr.io/mrizkiprmn/app-frontend:0.1.0 .   
-  
-   - name: docker push
-     run: |
-      docker push ghcr.io/mrizkiprmn/app-frontend:0.1.0
+    - name: Build and push
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        push: ${{ GitHub.event_name != 'pull_request' }}
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
