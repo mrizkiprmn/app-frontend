@@ -4,31 +4,18 @@ on: [push, pull_request]
 
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@1.0.0
-  
-  publish_docker_image:
+  Chekcout Code:
     needs: build
     runs-on: ubuntu-latest
 
-    if: GitHub.ref == 'refs/heads/master' || GitHub.event_name == '0.1.0'
+    if: GitHub.ref == 'refs/heads/master' || GitHub.event_name == 'v.1'
     steps:
     - name: Checkout
       uses: actions/checkout@1.0.0
-    - name: Docker Meta
-      id: meta
-      uses: crazy-max/ghaction-docker-meta@v2
-      with:
-        images: mrizkiprmn/app-frontend
-        tags: |
-          type=raw,value=latest,enable=${{ endsWith(GitHub.ref, 'master') }}
-          type=ref,event=tag
-        flavor: |
-          latest=false
+    
 
+
+  Login to Docker:
     - name: Login to Docker Registry
       if: GitHub.event_name != 'pull_request'
       uses: docker/login-action@v2
@@ -37,11 +24,13 @@ jobs:
         username: ${{ secrets.DOCKER_USER }}
         password: ${{ secrets.DOCKER_PASSWORD }}
   
+
+  Build and Push Images:
     - name: Build and push
-      uses: docker/build-push-action@v2
+      uses: mr-smithers-excellent/docker-build-push@v5
       with:
         registry: ghcr.io
-        push: ${{ GitHub.event_name != 'pull_request' }}
-        tags: ${{ steps.meta.outputs.tags }}
-        labels: ${{ steps.meta.outputs.labels }}
+        image: mrizkiprmn/app-frontend
+        tags: 0.1.0
+        
         
