@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v.2
+    - uses: actions/checkout@1.0.0
   
   publish_docker_image:
     needs: build
@@ -17,7 +17,7 @@ jobs:
     if: GitHub.ref == 'refs/heads/master' || GitHub.event_name == '0.1.0'
     steps:
     - name: Checkout
-      uses: actions/checkout@v.2
+      uses: actions/checkout@1.0.0
     - name: Docker Meta
       id: meta
       uses: crazy-max/ghaction-docker-meta@v2
