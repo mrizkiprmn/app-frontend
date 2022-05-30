@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 
 jobs:
-  Chekcout Code:
+  Chekcout_Code:
     runs-on: ubuntu-latest
 
     if: GitHub.ref == 'refs/heads/master' || GitHub.event_name == '0.1.0'
@@ -14,7 +14,7 @@ jobs:
     
 
 
-  Login to Docker:
+  Login_to_Docker:
     runs-on: ubuntu-latest
     steps:
 
@@ -27,10 +27,10 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
   
 
-  Build and Push Images:
+  Build_and_Push_Images:
     runs-on: ubuntu-latest
     steps:
-    
+
     - name: Build and push
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
