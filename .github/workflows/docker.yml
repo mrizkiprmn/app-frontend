@@ -35,8 +35,10 @@ jobs:
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
         registry: ghcr.io
-        dockerfile: Dockerfile.ci
+        dockerfile: .
         image: app-frontend
         tags: 0.1.0
+        username: ${{ secrets.DOCKER_USER }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
       
         
