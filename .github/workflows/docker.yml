@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 
 jobs:
-  Chekcout_Code:
+  build:
     runs-on: ubuntu-latest
 
     if: GitHub.ref == 'refs/heads/master' || GitHub.event_name == '0.1.0'
@@ -12,11 +12,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@1.0.0
     
-
-
-  Login_to_Docker:
-    runs-on: ubuntu-latest
-    steps:
 
     - name: Login to Docker Registry
       if: GitHub.event_name != 'pull_request'
@@ -27,18 +22,11 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
   
 
-  Build_and_Push_Images:
-    runs-on: ubuntu-latest
-    steps:
-
     - name: Build and push
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
-        image: app-frontend
+        image: mrizkiprmn/app-frontend
         tags: 0.1.0
         registry: ghcr.io
-        dockerfile: Dockerfile
-        username: ${{ secrets.DOCKER_USER }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
       
         
