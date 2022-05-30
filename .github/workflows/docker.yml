@@ -11,8 +11,8 @@ jobs:
   
    - name: docker login
      env:
-       REPO_GIT: ${{ secrets.REPO_GIT }}
-       PROJECT: ${{ secrets.PROJECT }}
+       REPO_GIT: ghcr.io/mrizkiprmn
+       PROJECT: app-frontend
        DOCKER_USER: ${{ secrets.DOCKER_USER }}
        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
      run: |
@@ -20,8 +20,8 @@ jobs:
   
    - name: docker build
      run: |
-      docker build -t $REPO_GIT$PROJECT:0.1.0 .   
+      docker build -t '${{env.REPO_GIT}}/{{$env.PROJECT}}':0.1.0 .   
   
    - name: docker push
      run: |
-      docker push $REPO_GIT$PROJECT:0.1.0
+      docker push '${{env.REPO_GIT}}/{{$env.PROJECT}}':0.1.0
