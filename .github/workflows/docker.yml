@@ -1,0 +1,27 @@
+name: Docker Build & Push
+
+on: [push, pull_request]
+
+
+jobs:
+ build:
+   runs-on: ubuntu-latest
+   steps:
+   - uses: actions/checkout@1.0.0  
+  
+   - name: docker login
+     env:
+       REPO_GIT: ${{ secrets.REPO_GIT }}
+       PROJECT: ${{ secrets.PROJECT }}
+       DOCKER_USER: ${{ secrets.DOCKER_USER }}
+       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+     run: |
+       echo $DOCKER_PASSWORD | docker login ghcr.io -u $DOCKER_USER --password-stdin    
+  
+   - name: docker build
+     run: |
+      docker build -t $REPO_GIT/$PROJECT:0.1.0 .   
+  
+   - name: docker push
+     run: |
+      docker push $REPO_GIT/$PROJECT:0.1.0
