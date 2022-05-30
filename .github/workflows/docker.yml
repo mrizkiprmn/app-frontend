@@ -11,8 +11,8 @@ jobs:
   
    - name: docker login
      env:
-       REPO_GIT: ${{ secrets.DOCKER_USER }}
-       PROJECT: ${{ secrets.DOCKER_PASSWORD }}
+       REPO_GIT: ${{ secrets.REPO_GIT }}
+       PROJECT: ${{ secrets.PROJECT }}
        DOCKER_USER: ${{ secrets.DOCKER_USER }}
        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
      run: |
